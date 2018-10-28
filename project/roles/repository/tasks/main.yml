@@ -6,9 +6,15 @@
     url: https://www.dotdeb.org/dotdeb.gpg
 
 ## APT Repository
+### Debian Repository
 - name: Debian repository
   include_tasks: debian/main.yml
   when: ansible_lsb['id']|lower == 'debian'
+
+### Ubuntu Repository
+- name: Ubuntu repository
+  include_tasks: ubuntu/main.yml
+  when: ansible_lsb['id']|lower == 'ubuntu'
 
 ## APT Update
 - name: Update package lists

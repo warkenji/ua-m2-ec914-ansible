@@ -1,0 +1,7 @@
+---
+# Backports repository
+- name : Backports repository
+  apt_repository:
+    repo: "deb http://archive.ubuntu.com/ubuntu {{ ansible_lsb['codename'] }}-backports main restricted universe multiverse"
+    filename: backports
+    update_cache: no

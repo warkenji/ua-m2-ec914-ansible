@@ -1,0 +1,21 @@
+---
+# Dotdeb repository
+- name : Dotdeb repository
+  apt_repository:
+    repo: deb http://packages.dotdeb.org stable all
+    filename: dotdeb
+    update_cache: no
+
+## ARM CPU
+- name: ARM CPU
+  include_tasks: arm.yml
+  when: 
+    - ansible_machine|lower == 'arm64' or ansible_machine|lower == 'armhf'
+
+## Other CPU
+- name: Other CPU
+  include_tasks: others.yml
+  when: 
+    - ansible_machine|lower != 'arm64'
+    - ansible_machine|lower != 'armhf'
+
