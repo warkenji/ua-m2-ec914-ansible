@@ -1,4 +1,9 @@
 ---
 - hosts: all
   roles:
+    - role: repository
+      become: yes
+      become_method: sudo
+      when: ansible_os_family|lower == 'debian'
+
     - role: common
