@@ -5,6 +5,11 @@
   apt_key:
     url: https://www.dotdeb.org/dotdeb.gpg
 
+## APT Repository
+- name: Debian repository
+  include_tasks: debian/main.yml
+  when: ansible_lsb['id']|lower == 'debian'
+
 ## APT Update
 - name: Update package lists
   apt:

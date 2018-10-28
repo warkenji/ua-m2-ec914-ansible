@@ -1,0 +1,15 @@
+---
+# Dotdeb repository
+- name : Dotdeb repository
+  apt_repository:
+    repo: "deb http://packages.dotdeb.org {{ ansible_lsb['codename'] }} all"
+    filename: dotdeb
+    update_cache: no
+
+# Backports repository
+- name : Backports repository
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian {{ ansible_lsb['codename'] }}-backports main contrib non-free"
+    filename: backports
+    update_cache: no
+
