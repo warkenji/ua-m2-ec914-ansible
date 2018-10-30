@@ -2,6 +2,9 @@
 # Backports repository
 - name : Backports repository
   apt_repository:
-    repo: "deb http://ports.ubuntu.com/ubuntu-ports {{ ansible_lsb['codename'] }}-backports main restricted universe multiverse"
+    repo: "{{ item }} http://ports.ubuntu.com/ubuntu-ports {{ ansible_distribution_release }}-backports main restricted universe multiverse"
     filename: backports
     update_cache: no
+  with_items:
+    - deb
+    - deb-src
