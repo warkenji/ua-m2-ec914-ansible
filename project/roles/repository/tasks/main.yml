@@ -1,5 +1,6 @@
 ---
 # tasks file for repository
+
 ## APT Key
 - name: Dotdeb APT Key
   apt_key:
@@ -17,7 +18,19 @@
   when: ansible_distribution == 'Ubuntu'
 
 ## APT Update
-- name: Update package lists
+- name: Update packages
   apt:
     update_cache: yes
+    upgrade: yes
+
+## APT Install Aptitude
+- name: Install Aptitude
+  apt:
+    name: aptitude
+    state: latest
+
+
+## APT Upgrade
+- name: Upgrade packages
+  apt:
     upgrade: yes
