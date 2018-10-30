@@ -9,14 +9,15 @@
 ### Debian Repository
 - name: Debian repository
   include_tasks: debian/main.yml
-  when: ansible_lsb['id']|lower == 'debian'
+  when: ansible_distribution == 'Debian'
 
 ### Ubuntu Repository
 - name: Ubuntu repository
   include_tasks: ubuntu/main.yml
-  when: ansible_lsb['id']|lower == 'ubuntu'
+  when: ansible_distribution == 'Ubuntu'
 
 ## APT Update
 - name: Update package lists
   apt:
     update_cache: yes
+    upgrade: yes
