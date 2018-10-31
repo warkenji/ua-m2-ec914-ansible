@@ -2,6 +2,8 @@
 - hosts: all
   become: yes
   become_method: su
+  vars:
+    dpkg_architecture: lookup('pipe', 'dpkg --print-architecture 2> /dev/null')
   roles:
     - role: repository
       when: ansible_os_family == 'Debian'
