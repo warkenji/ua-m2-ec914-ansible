@@ -1,5 +1,5 @@
 ## APT Install packages
-- name: Install a list of packages for Precise or older
+- name: Installing a list of packages for Precise or older
   apt:
     name: "{{ packages }}"
     state: latest

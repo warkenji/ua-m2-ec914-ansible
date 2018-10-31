@@ -1,13 +1,13 @@
 ---
 # tasks file for docker
 ## APT Update packages
-- name: Upadte packages if needed
+- name: Upadting packages if needed
   apt:
     cache_valid_time: 3600
 
 # tasks file for docker
 ## APT Remove packages
-- name: Remove a list of packages
+- name: Removing a list of packages
   apt:
     name: "{{ packages }}"
     state: absent
@@ -29,12 +29,12 @@
   when: ansible_distribution == 'Ubuntu'
 
 ## APT Key
-- name: Docker APT Key
+- name: Adding Docker APT Key
   apt_key:
     url: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg"
 
 ## Adding Docker Repository
-- name: Docker Repository
+- name: Adding Docker Repository
   apt_repository:
     repo: "deb [arch={{ dpkg_architecture }}] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
   when: dpkg_architecture in ['amd64', 'armhf'] or
@@ -43,7 +43,7 @@
 
 
 ## APT Update and Install Docker
-- name: Install Docker
+- name: Installing Docker
   apt:
     name: docker-ce
     update_cache: yes

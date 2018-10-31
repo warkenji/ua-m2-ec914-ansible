@@ -2,7 +2,7 @@
 # tasks file for repository
 
 ## APT Key
-- name: Dotdeb APT Key
+- name: Adding Dotdeb APT Key
   apt_key:
     url: https://www.dotdeb.org/dotdeb.gpg
 
@@ -18,18 +18,18 @@
   when: ansible_distribution == 'Ubuntu'
 
 ## APT Update
-- name: Update packages
+- name: Updating packages
   apt:
     update_cache: yes
 
 ## APT Install Aptitude
-- name: Install Aptitude
+- name: Installing Aptitude
   apt:
     name: aptitude
     state: latest
 
 
 ## APT Upgrade
-- name: Upgrade packages
+- name: Upgrading packages
   apt:
     upgrade: yes

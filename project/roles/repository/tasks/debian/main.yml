@@ -1,6 +1,6 @@
 ---
 # Dotdeb repository
-- name : Dotdeb repository
+- name : Adding Dotdeb repository
   apt_repository:
     repo: "{{ item }} http://packages.dotdeb.org {{ ansible_distribution_release }} all"
     filename: dotdeb
@@ -10,7 +10,7 @@
     - deb-src
 
 # Backports repository
-- name : Backports repository
+- name : Adding Backports repository
   apt_repository:
     repo: "{{ item }} http://deb.debian.org/debian {{ ansible_distribution_release }}-backports main contrib non-free"
     filename: backports

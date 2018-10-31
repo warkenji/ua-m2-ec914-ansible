@@ -1,5 +1,5 @@
 ## APT Install packages
-- name: Install a list of packages for Jessie or newer
+- name: Installing a list of packages for Jessie or newer
   apt:
     name: "{{ packages }}"
     state: latest

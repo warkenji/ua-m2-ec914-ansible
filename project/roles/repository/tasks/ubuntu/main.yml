@@ -1,6 +1,6 @@
 ---
 # Dotdeb repository
-- name : Dotdeb repository
+- name : Adding Dotdeb repository
   apt_repository:
     repo: "{{ item }} http://packages.dotdeb.org stable all"
     filename: dotdeb

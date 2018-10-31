@@ -1,5 +1,5 @@
 ## APT Install packages
-- name: Install a list of packages for Debian
+- name: Installing a list of packages for Debian
   apt:
     name: "{{ packages }}"
     state: latest
