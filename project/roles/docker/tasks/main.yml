@@ -1,2 +1,36 @@
 ---
 # tasks file for docker
+## APT Install packages
+- name: Install a list of packages
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+
+- name: Docker APT Key
+  apt_key:
+    url: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg"
+
+## Adding Docker Repository for AMD64 CPU
+- name: Docker Repository for AMD64 CPU
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+  when: ansible_machine[:3] != 'arm'
+
+## Adding Docker Repository for ARM CPU
+- name: Docker Repository for ARM CPU
+  apt_repository:
+    repo: "deb [arch=armhf] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+  when: ansible_machine[:3] == 'arm'
+
+## APT Update and Install Docker
+- name: Install Docker
+  apt:
+    name: docker-ce
+    update_cache: yes
