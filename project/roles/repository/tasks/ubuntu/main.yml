@@ -12,12 +12,10 @@
 ## ARM CPU
 - name: ARM CPU
   include_tasks: arm.yml
-  when: 
-    - ansible_machine[:3] == 'arm'
+  when: ansible_machine[:3] == 'arm'
 
 ## Other CPU
 - name: Other CPU
   include_tasks: others.yml
-  when:
-    - ansible_machine[:3] != 'arm'
+  when: ansible_machine[:3] != 'arm'
 
