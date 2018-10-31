@@ -9,13 +9,13 @@
     - deb
     - deb-src
 
-## ARM CPU
-- name: ARM CPU
+## ARM Architecture
+- name: ARM Architecture
   include_tasks: arm.yml
   when: dpkg_architecture in ['armhf', 'arm64']
 
-## Other CPU
-- name: Other CPU
-  include_tasks: others.yml
+## Other Architecture
+- name: Other Architecture
+  include_tasks: other.yml
   when: dpkg_architecture not in ['armhf', 'arm64']
 
