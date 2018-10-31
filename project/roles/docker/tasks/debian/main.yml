@@ -1,0 +1,22 @@
+## APT Install packages
+- name: Install a list of packages for Debian
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+
+## APT Install packages
+### Debian Wheezy or older Packages
+- name: Debian Wheezy or older packages
+  include_tasks: wheezy_older.yml
+  when: ansible_lsb['major_release']|int <= 7
+
+## APT Install packages
+### Debian Jessie or newer Packages
+- name: Debian Jessie or newer packages
+  include_tasks: jessie_newer.yml
+  when: ansible_lsb['major_release']|int >= 8

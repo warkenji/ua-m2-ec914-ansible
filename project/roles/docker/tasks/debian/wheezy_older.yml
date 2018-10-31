@@ -1,0 +1,5 @@
+## APT Install packages
+- name: Install a list of packages for Wheezy or older
+  apt:
+    name: python-software-properties
+    state: latest

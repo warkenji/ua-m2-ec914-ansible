@@ -1,0 +1,17 @@
+## APT Install packages
+- name: Install a list of packages for Ubuntu
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+
+## APT Install packages
+### Ubtuntu Precise or older Packages
+- name: Ubtuntu Precise or older packages
+  include_tasks: precise_older.yml
+  when: ansible_lsb['major_release']|int < 16

@@ -1,33 +1,39 @@
 ---
 # tasks file for docker
-## APT Install packages
-- name: Install a list of packages
+## APT REmove packages
+- name: Remove a list of packages
   apt:
     name: "{{ packages }}"
-    state: latest
+    state: absent
   vars:
     packages:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg2
-      - software-properties-common
+      - docker
+      - docker-engine
+      - docker.io
 
+## APT Install packages
+### Debian Packages
+- name: Debian packages
+  include_tasks: debian/main.yml
+  when: ansible_distribution == 'Debian'
+
+### Ubuntu Packages
+- name: Ubuntu packages
+  include_tasks: ubuntu/main.yml
+  when: ansible_distribution == 'Ubuntu'
+
+## APT Key
 - name: Docker APT Key
   apt_key:
     url: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg"
 
-## Adding Docker Repository for AMD64 CPU
-- name: Docker Repository for AMD64 CPU
+## Adding Docker Repository
+- name: Docker Repository
   apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
-  when: ansible_machine[:3] != 'arm'
+    repo: "deb [arch={{ dpkg_architecture }}] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+  when: dpkg_architecture == 'amd64' or dpkg_architecture == 'armhf' or ansible_distribution == 'Ubuntu' and ansible_lsb['major_release']|int >= 16 and (dpkg_architecture == 'ppc64el' or dpkg_architecture == 's390x')
 
-## Adding Docker Repository for ARM CPU
-- name: Docker Repository for ARM CPU
-  apt_repository:
-    repo: "deb [arch=armhf] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
-  when: ansible_machine[:3] == 'arm'
+
 
 ## APT Update and Install Docker
 - name: Install Docker

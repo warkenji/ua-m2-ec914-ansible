@@ -1,0 +1,9 @@
+## APT Install packages
+- name: Install a list of packages for Jessie or newer
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - gnupg2
+      - software-properties-common

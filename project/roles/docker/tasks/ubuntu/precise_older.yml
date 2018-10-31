@@ -1,0 +1,9 @@
+## APT Install packages
+- name: Install a list of packages for Precise or older
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - "linux-image-extra-{{ lookup('pipe', 'uname -r') }}"
+      - linux-image-extra-virtual
