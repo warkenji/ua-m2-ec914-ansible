@@ -1,5 +1,9 @@
 ---
 # tasks file for repository
+## APT Update packages
+- name: Upadting packages if needed
+  apt:
+    cache_valid_time: 3600
 
 ## APT Key
 - name: Adding Dotdeb APT Key
@@ -16,11 +20,6 @@
 - name: Ubuntu repository
   include_tasks: ubuntu/main.yml
   when: ansible_distribution == 'Ubuntu'
-
-## APT Update
-- name: Updating packages
-  apt:
-    update_cache: yes
 
 ## APT Install Aptitude
 - name: Installing Aptitude
