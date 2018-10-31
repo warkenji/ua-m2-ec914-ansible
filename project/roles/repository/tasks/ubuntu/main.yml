@@ -12,12 +12,10 @@
 ## ARM CPU
 - name: ARM CPU
   include_tasks: arm.yml
-  when: dpkg_architecture == 'armhf' or dpkg_architecture == 'arm64'
+  when: dpkg_architecture in ['armhf', 'arm64']
 
 ## Other CPU
 - name: Other CPU
   include_tasks: others.yml
-  when:
-    - dpkg_architecture != 'armhf'
-    - dpkg_architecture != 'arm64'
+  when: dpkg_architecture not in ['armhf', 'arm64']
 

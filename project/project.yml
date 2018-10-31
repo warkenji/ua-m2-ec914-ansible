@@ -6,8 +6,5 @@
     dpkg_architecture: lookup('pipe', 'dpkg --print-architecture 2> /dev/null')
   roles:
     - role: repository
-      when: ansible_os_family == 'Debian'
-
     - role: docker
-      when: ansible_os_family == 'Debian'
-
+  when: ansible_os_family == 'Debian'
